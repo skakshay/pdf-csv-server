@@ -29,6 +29,8 @@ def convert_pdf_to_csv(path):
 	df1 = pd.read_csv(OUTPUT_NAME1)
 	df2 = pd.read_csv(OUTPUT_NAME2, header=0, names=NAMES)
 	pd.concat([df1, df2], axis=1).to_csv(OUTPUT_NAME, index=False)
+	os.remove(OUTPUT_NAME1)
+	os.remove(OUTPUT_NAME2)
 	
 
 if __name__=='__main__':
