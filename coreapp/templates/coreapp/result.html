@@ -1,0 +1,13 @@
+{% extends "coreapp/base.html" %}
+
+{% block content %}
+   <p style="font-weight: bold; font-size: 25px; text-align: center;">
+      Value of {{query_variable}} in {{query_year}} : {{value}}
+   </p>
+   <div style="width: 300px; margin:0 auto; margin-top: 15px">
+      <a href=/{{MEDIA_URL}}{{file_path}} class="btn-success" download="BalSheet.csv">
+         <button type="button" style="width: 100%; color: #fff; background-color: #007bff; border-color: 
+         #007bff;">Download CSV</button>
+      </a>
+   </div>
+{% endblock %}
