@@ -10,6 +10,6 @@ from django.views.static import serve
 app_name="coreapp"
 
 urlpatterns = [
-	path('uploadFile/', DataParsingView.as_view()),
-	path('getValue/', GetValueView.as_view(), name='get-value')
+    path('uploadFile/', DataParsingView.as_view()),
+    path('getValue/', GetValueView.as_view(), name='get-value')
 ] 
