@@ -6,12 +6,13 @@ This repository consists of
 ## Django Project
 
 ### Instructions to run on local
-1. Clone the repo
-2. Create new python3 environment
-3. Install dependencies from requirements.txt using pip
-4. Change value of DATABASES in pdftocsv/settings.py and create a new database if required
-5. `python manage.py migrate`
-6. `python manage.py runserver`
+1. Create new python3 environment : `python3 -m venv /path/to/new/virtual/environment`
+2. Activate the newly create environment : `source /path/to/new/virtual/environment/bin/activate`
+3. Clone the repo, and change directory into the project : `cd pdf-csv-server/`
+4. Install dependencies from requirements.txt using pip
+5. Change value of **DATABASES** in `pdftocsv/settings.py` and create a new database if required
+6. Run : `python manage.py migrate`
+7. Run : `python manage.py runserver`
 
 
 ### APIs : 
