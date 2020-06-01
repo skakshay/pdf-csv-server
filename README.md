@@ -32,6 +32,8 @@ The combination of a **Particular name** and **Year** in a pdf file must be uniq
 level(refer `coreapp/models.py`). So once you have successfully uploaded a pdf make sure the next pdf that you 
 upload has different **Year** or **Particular name** to maintain the integrity of db table. 
 
+In the sample **BalSheet.pdf** provided there are multiple values of `Total Rs.`. I am not able to understand what do they correspond to and which `Total Rs` is for which particulars. So I have not saved them in database. You can see the `Total Rs.` in the generated csv but not in the database. 
+
 
 
 ## Independent script `pdf_csv.py`
