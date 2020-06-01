@@ -1,5 +1,3 @@
-
-# from ..pdf_csv import convert_pdf_to_csv
 import tabula
 import os
 import csv 
@@ -19,6 +17,26 @@ from .constants import *
 
 
 def get_value(variable, year):
+	"""Gets the value of variable for year
+
+        Parameters
+        ----------
+        variable: str
+            the variable to be queried
+        year: str
+            the year for which variable needs to be queried
+
+        Raises
+        ------
+        RuntimeError
+            If the db qiery returns more than one result or returns no result
+
+        Returns
+        -------
+        tuple
+            a tuple with value and file name
+        """
+
 	try: 
 		balance = BalanceSheet.objects.get(particular__iexact=variable, year=year)
 		return balance.value, balance.file.file.name
@@ -28,6 +46,21 @@ def get_value(variable, year):
 
 
 def convert_and_save_data(pdf_file) :
+	"""Converts the pdf to csv, saves data present in csv and saves 
+	the csv itself. Deletes all the intermediate files generated except
+	 the final csv.
+
+        Parameters
+        ----------
+        pdf_fie: str
+            The file location of the pdf
+
+        Raises
+        ------
+        RuntimeError
+            if the data in pdf violates the uniqueness constraint of database
+        """
+
 	file_name = default_storage.save(pdf_file.name, pdf_file)
 	output_file_name, output1_file_name, output2_file_name = convert_pdf_to_csv(os.path.abspath(settings.MEDIA_URL+file_name))
 	os.remove(output1_file_name)
@@ -47,6 +80,19 @@ def convert_and_save_data(pdf_file) :
 	
 
 def save_data(filename):
+	"""Parses and saves the data of csv file
+
+        Parameters
+        ----------
+        filename: str
+            path of the file whose data needs to be saved
+
+        Returns
+        -------
+        list
+            a list of data objects saved
+        """
+
 	with open(filename, 'r') as csvfile:
 		csvreader = csv.reader(csvfile)
 		fields = next(csvreader)
@@ -85,6 +131,19 @@ def save_data(filename):
 
 
 def convert_pdf_to_csv(path):
+	"""Gets the value of variable for year
+
+        Parameters
+        ----------
+        path: str
+            path of the pdf file to be converted to csv
+
+        Returns
+        -------
+        tuple
+            a tuple containing all the intermediate and final csvs generated
+    """
+
 	filename_wo_ext = os.path.splitext(os.path.basename(path))[0]
 
 	filename_prefix = str(calendar.timegm(time.gmtime()))

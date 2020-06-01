@@ -5,6 +5,27 @@ from .services import *
 
 
 class SubmissionForm(forms.Form):
+    """
+    A class used represent the form input elements and handles the data submitted
+
+    ...
+
+    Attributes
+    ----------
+    query_variable : CharField
+        input form field to get query variable
+    query_year : CharField
+        input form field to get query year
+    pdf_file : FileField
+        input form field for uploading file
+
+    
+    Methods
+    -------
+    clean(self) :
+        validates the form data and saves form data
+    """
+
     query_variable = forms.CharField(label='Query Variable', max_length=128, 
     	widget=forms.TextInput(attrs={'placeholder': 'NPA'}), 
     	error_messages={'required': 'Please enter the query variable', 'max_length':'Length of query variable exceeds max length'})
@@ -25,6 +46,16 @@ class SubmissionForm(forms.Form):
 
 
     def clean(self):
+        """Cleans and validates the data, converts the uploaded file 
+        and saves its data, get the value of requested params and 
+        saves it in the session
+
+        Raises
+        ------
+        RuntimeError
+            If validation fails or unable to save data
+        """
+
     	super().clean()
     	try:
     		convert_and_save_data(self.cleaned_data['pdf_file'])
