@@ -16,15 +16,15 @@ This repository consists of
 
 
 ### APIs : 
-* `/api/uploadFile/` : GET request 
-  	Returns the page for the user to enter input query and upload file
+* `/api/uploadFile/` : GET request\
+	         	Returns the page for the user to enter input query and upload file
 
-* `/api/uploadFile/` : POST request 
-  	body : {"*query_variable*":"", "*query_year*":"", "*pdf_file*":""}
-	  redirects to `/api/getValue/`
+* `/api/uploadFile/` : POST request\
+  	                body : {"*query_variable*":"", "*query_year*":"", "*pdf_file*":""}\
+	                redirects to `/api/getValue/`
 
-* `/api/getValue/` : GET request
-	  displays the value of *query_variable* for *query_year* and link to generated csv to download
+* `/api/getValue/` : GET request\
+		       displays the value of *query_variable* for *query_year* and link to the generated csv to download
     
 
 ### Assumption : 
