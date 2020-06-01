@@ -16,21 +16,23 @@ This repository consists of
 
 
 ### APIs : 
-* `/api/uploadFile/` : GET request 
-  	Returns the page for the user to enter input query and upload file
+* `/api/uploadFile/` : GET request\
+	         	Returns the page for the user to enter input query and upload file
 
-* `/api/uploadFile/` : POST request 
-  	body : {"*query_variable*":"", "*query_year*":"", "*pdf_file*":""}
-	  redirects to `/api/getValue/`
+* `/api/uploadFile/` : POST request\
+  	                body : {"*query_variable*":"", "*query_year*":"", "*pdf_file*":""}\
+	                redirects to `/api/getValue/`
 
-* `/api/getValue/` : GET request
-	  displays the value of *query_variable* for *query_year* and link to generated csv to download
+* `/api/getValue/` : GET request\
+		       displays the value of *query_variable* for *query_year* and link to the generated csv to download
     
 
 ### Assumption : 
 The combination of a **Particular name** and **Year** in a pdf file must be unique. This has been enforced on database 
 level(refer `coreapp/models.py`). So once you have successfully uploaded a pdf make sure the next pdf that you 
 upload has different **Year** or **Particular name** to maintain the integrity of db table. 
+
+In the sample **BalSheet.pdf** provided there are multiple values of `Total Rs.`. I am not able to understand what do they correspond to and which `Total Rs` is for which particulars. So I have not saved them in database. You can see the `Total Rs.` in the generated csv but not in the database. 
 
 
 
